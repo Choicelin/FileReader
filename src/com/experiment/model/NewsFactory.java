@@ -31,6 +31,13 @@ public class NewsFactory {
                     reader.readLine();  // 跳过空行
                     String content = reader.readLine();   // 读取content
                     News news = new News(title, content);
+                    reader.readLine();
+
+                    for (int i = 0; i < 3; i++) {
+                        String related_date = reader.readLine();
+                        String related_title = reader.readLine();
+                        news.addRelated(related_date, related_title);
+                    }
                     newsList.add(news);
                 } catch (java.io.IOException e) {
                     System.out.println("新闻读取出错");
