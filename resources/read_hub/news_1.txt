@@ -1,0 +1,6 @@
+在idea中添加try/catch的快捷键
+
+在idea中添加try/catch的快捷键 
+ctrl+alt+t 
+选中想被try/catch包围的语句，同时按下ctrl+alt+t， 
+出现下图 
