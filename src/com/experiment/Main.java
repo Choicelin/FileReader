@@ -28,5 +28,5 @@ public class Main {
 
         NewsListViewer viewer = new NewsListViewer(newsList);
         viewer.display();
-;    }
+    }
 }
