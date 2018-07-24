@@ -3,24 +3,13 @@ package com.experiment.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class News {
+public class News implements Viewable {
     private String title;
     private String content;
-
-    private Map<String, String> related;
 
     public News(String title, String content) {
         this.title = title;
         this.content = content;
-        this.related = new HashMap<String, String>();
-    }
-
-    public void addRelated(String date, String title) {
-        related.put(date, title);
-    }
-
-    public Map<String, String> getRelated() {
-        return related;
     }
 
     public String getTitle() {
@@ -29,5 +18,11 @@ public class News {
 
     public String getContent() {
         return content;
+    }
+
+    // 多态  依赖转移
+    public void display() {
+        System.out.println("|Title|" + this.getTitle());
+        System.out.println("|Content|" + this.getContent());
     }
 }

@@ -2,8 +2,10 @@ package com.experiment;
 
 import com.experiment.model.News;
 import com.experiment.model.NewsFactory;
+import com.experiment.model.Viewable;
 import com.experiment.view.NewsListViewer;
 
+import javax.swing.text.View;
 import java.util.ArrayList;
 
 public class Main {
@@ -16,7 +18,7 @@ public class Main {
     // 4. 开始写代码
 
     public static void main(String[] args) {
-        String resource_path = Main.class.getClassLoader().getResource("read_hub").getPath();
+        String resource_path = Main.class.getClassLoader().getResource("news").getPath();
 
         NewsFactory newReader = null;
         try {
@@ -26,6 +28,9 @@ public class Main {
         }
         ArrayList<News> newsList = newReader.fetch();
 
+
+        ArrayList<Viewable> viewableList = new ArrayList<Viewable>();
+        viewableList.addAll(newsList);
         NewsListViewer viewer = new NewsListViewer(newsList);
         viewer.display();
     }

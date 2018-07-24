@@ -25,23 +25,14 @@ public class NewsFactory {
         File[] files = newsDir.listFiles();
         if (files != null) {
             for (File file : files) {
-                try {
-                    BufferedReader reader = new BufferedReader(new FileReader(file));
-                    String title = reader.readLine();  // 读取title
-                    reader.readLine();  // 跳过空行
-                    String content = reader.readLine();   // 读取content
-                    News news = new News(title, content);
-                    reader.readLine();
-
-                    for (int i = 0; i < 3; i++) {
-                        String related_date = reader.readLine();
-                        String related_title = reader.readLine();
-                        news.addRelated(related_date, related_title);
-                    }
-                    newsList.add(news);
-                } catch (java.io.IOException e) {
-                    System.out.println("新闻读取出错");
+                NewsReader newsReader = null;
+                if (file.getName().endsWith(".txt")) {
+                    newsReader = new TextNewsReader(file);
+                } else if(file.getName().endsWith(".json")) {
+                    newsReader = new JsonNewsReader(file);
                 }
+                News news = newsReader.readNews();
+                newsList.add(news);
             }
         }
         return newsList;
